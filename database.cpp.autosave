@@ -1,9 +1,0 @@
-#include "database.hpp"
-#include <QSqlRelationalTableModel>
-
-Database::Database()
-{
-    QSqlRelationalTableModel *model = new QSqlRelationalTableModel();
-    model->setQuery("");
-    model->select();
-}

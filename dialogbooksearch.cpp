@@ -1,4 +1,4 @@
-#include "dialogbooksearch.h"
+#include "dialogbooksearch.hpp"
 #include "ui_dialogbooksearch.h"
 
 DialogBookSearch::DialogBookSearch(QWidget *parent) :

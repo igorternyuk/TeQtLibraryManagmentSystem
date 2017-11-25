@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DialogAuthor</class>
  <widget class="QDialog" name="DialogAuthor">
@@ -5,13 +6,62 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>329</width>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTableView" name="tableView"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="btnNewAuthor">
+         <property name="text">
+          <string>New author</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRemoveAuthor">
+         <property name="text">
+          <string>Remove author</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnReloadAuthors">
+         <property name="text">
+          <string>Reload</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <action name="action_insert_new_author">
+   <property name="text">
+    <string>Insert new author</string>
+   </property>
+  </action>
+  <action name="action_remove_selected_author">
+   <property name="text">
+    <string>Remove selected author</string>
+   </property>
+  </action>
+  <action name="action_reload_list_of_authors">
+   <property name="text">
+    <string>Reload list of authors</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -31,6 +31,8 @@ CREATE TABLE book (
     idGenre INTEGER,
     idAthor INTEGER,
     idEdition INTEGER,
+    price DOUBLE,
+    available INTEGER,
     FOREIGN KEY (idGenre) REFERENCES genre(id),
     FOREIGN KEY (idAthor) REFERENCES author(id),
 	FOREIGN KEY (idEdition) REFERENCES edition(id)

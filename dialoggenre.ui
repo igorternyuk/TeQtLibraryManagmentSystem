@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DialogGenre</class>
  <widget class="QDialog" name="DialogGenre">
@@ -12,6 +13,55 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTableView" name="tableView"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="btnNewGenre">
+         <property name="text">
+          <string>New genre</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRemoveGenre">
+         <property name="text">
+          <string>Remove genre</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnReloadGenres">
+         <property name="text">
+          <string>Reload list</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <action name="action_insert_new_genre">
+   <property name="text">
+    <string>Insert new genre</string>
+   </property>
+  </action>
+  <action name="action_remove_selected_genre">
+   <property name="text">
+    <string>Remove selected genre</string>
+   </property>
+  </action>
+  <action name="action_reload_list_of_genres">
+   <property name="text">
+    <string>Reload list of genres</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

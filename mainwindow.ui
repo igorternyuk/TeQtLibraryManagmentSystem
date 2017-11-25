@@ -1,24 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>750</width>
+    <height>650</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="minimumSize">
+   <size>
+    <width>750</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTableView" name="tableView">
+        <property name="minimumSize">
+         <size>
+          <width>721</width>
+          <height>311</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="minimumSize">
+           <size>
+            <width>570</width>
+            <height>261</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>570</width>
+            <height>261</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Search book</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0" rowspan="2">
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Title</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtSearch"/>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QCheckBox" name="checkBoxAuthor">
+                 <property name="text">
+                  <string>Athor</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboAuthores"/>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="1" rowspan="2">
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QCheckBox" name="checkBoxGenre">
+                 <property name="text">
+                  <string>Genre</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboGenres"/>
+               </item>
+              </layout>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkBoxPages">
+               <property name="text">
+                <string>Consider pages</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>PagesMin</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBoxPagesMin">
+                 <property name="maximum">
+                  <number>10000</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>PagesMax</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBoxPagesMax">
+                 <property name="maximum">
+                  <number>100000</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="3" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QCheckBox" name="checkBoxCountry">
+                 <property name="text">
+                  <string>Country</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboCountries"/>
+               </item>
+              </layout>
+             </item>
+             <item row="4" column="0">
+              <widget class="QCheckBox" name="checkBoxPrice">
+               <property name="text">
+                <string>Consider price</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QCheckBox" name="checkBoxEdition">
+                 <property name="text">
+                  <string>Edition</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboEditions"/>
+               </item>
+              </layout>
+             </item>
+             <item row="5" column="0">
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>PriceMin</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="spinBoxPriceMin">
+                 <property name="maximum">
+                  <double>999999999.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>PriceMax</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="spinBoxPriceMax">
+                 <property name="maximum">
+                  <double>999999999.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="5" column="1" rowspan="2">
+              <widget class="QCheckBox" name="checkBoxOnlyAvailables">
+               <property name="text">
+                <string>Only availables</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" rowspan="2">
+              <widget class="QCheckBox" name="checkBoxDate">
+               <property name="text">
+                <string>Consider date</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1" rowspan="2">
+              <widget class="QPushButton" name="btnSearchBook">
+               <property name="text">
+                <string>Search</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0" rowspan="2">
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>DateMin</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="dateEditMIn"/>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>DateMax</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="dateEditMax"/>
+               </item>
+              </layout>
+             </item>
+             <item row="9" column="1">
+              <widget class="QPushButton" name="btnResetForm">
+               <property name="text">
+                <string>Reset form</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>750</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_close"/>
+   </widget>
+   <widget class="QMenu" name="menuAuthor">
+    <property name="title">
+     <string>Author</string>
+    </property>
+    <addaction name="action_edit_authors"/>
+   </widget>
+   <widget class="QMenu" name="menuEdition">
+    <property name="title">
+     <string>Edition</string>
+    </property>
+    <addaction name="action_manage_editions"/>
+   </widget>
+   <widget class="QMenu" name="menuCountry">
+    <property name="title">
+     <string>Country</string>
+    </property>
+    <addaction name="action_edit_countries"/>
+   </widget>
+   <widget class="QMenu" name="menuGenre">
+    <property name="title">
+     <string>Genre</string>
+    </property>
+    <addaction name="action_edit_genres"/>
+   </widget>
+   <widget class="QMenu" name="menuBook">
+    <property name="title">
+     <string>Book</string>
+    </property>
+    <addaction name="action_insert_book"/>
+    <addaction name="action_remove_book"/>
+    <addaction name="action_search_book"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAuthor"/>
+   <addaction name="menuEdition"/>
+   <addaction name="menuCountry"/>
+   <addaction name="menuGenre"/>
+   <addaction name="menuBook"/>
+  </widget>
+  <action name="action_close">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="action_edit_authors">
+   <property name="text">
+    <string>Edit authors</string>
+   </property>
+  </action>
+  <action name="action_manage_editions">
+   <property name="text">
+    <string>Manage editions</string>
+   </property>
+  </action>
+  <action name="action_edit_countries">
+   <property name="text">
+    <string>Edit countries</string>
+   </property>
+  </action>
+  <action name="action_edit_genres">
+   <property name="text">
+    <string>Edit genres</string>
+   </property>
+  </action>
+  <action name="action_insert_book">
+   <property name="text">
+    <string>Insert book</string>
+   </property>
+   <property name="toolTip">
+    <string>Insert book</string>
+   </property>
+  </action>
+  <action name="action_remove_book">
+   <property name="text">
+    <string>Remove book</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove book</string>
+   </property>
+  </action>
+  <action name="action_search_book">
+   <property name="text">
+    <string>Search for a book</string>
+   </property>
+   <property name="toolTip">
+    <string>Search for a book</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>

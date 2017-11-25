@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DialogEdition</class>
  <widget class="QDialog" name="DialogEdition">
@@ -12,6 +13,55 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTableView" name="tableView"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="btnNewEdition">
+         <property name="text">
+          <string>New edition</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRemoveEdition">
+         <property name="text">
+          <string>Remove edition</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnReloadEditions">
+         <property name="text">
+          <string>Reload list</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <action name="action_insert_new_edition">
+   <property name="text">
+    <string>Insert new edition</string>
+   </property>
+  </action>
+  <action name="action_remove_selected_edition">
+   <property name="text">
+    <string>Remove selected edition</string>
+   </property>
+  </action>
+  <action name="action_reload_list_of_editions">
+   <property name="text">
+    <string>Reload list of editions</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

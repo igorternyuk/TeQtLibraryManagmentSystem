@@ -1,0 +1,17 @@
+#include "comboboxmodel.h"
+#include <QSqlQuery>
+
+ComboBoxModel::ComboBoxModel(QObject *parent)
+{
+    
+}
+
+QVariant ComboBoxModel::data(const QModelIndex &item, int role) const
+{
+    
+}
+
+int ComboBoxModel::rowCount(const QModelIndex &parent) const
+{
+    
+}

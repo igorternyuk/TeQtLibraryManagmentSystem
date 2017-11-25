@@ -1,0 +1,17 @@
+#pragma once
+
+#include <QObject>
+#include <QSqlQueryModel>
+
+class ComboBoxModel: public QSqlQueryModel
+{
+    Q_OBJECT
+    
+public:
+    explicit ComboBoxModel(const QString &column, QObject *parent = nullptr);
+    QVariant dataFromParent(QModelIndex index, int column) const;
+public:
+	virtual QVariant data(const QModelIndex &item,
+                          int role = Qt::DisplayRole) const override;
+	virtual int rowCount(const QModelIndex &parent) const override;
+};

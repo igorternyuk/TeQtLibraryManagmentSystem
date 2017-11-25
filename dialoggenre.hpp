@@ -1,22 +1,30 @@
-#ifndef DIALOGGENRE_H
-#define DIALOGGENRE_H
+#pragma once
 
 #include <QDialog>
 
-namespace Ui {
-class DialogGenre;
+namespace Ui
+{
+    class DialogGenre;
 }
+
+class QSqlTableModel;
 
 class DialogGenre : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DialogGenre(QWidget *parent = 0);
+    explicit DialogGenre(QWidget *parent = nullptr);
     ~DialogGenre();
+
+private slots:
+    void on_action_insert_new_genre_triggered();
+
+    void on_action_remove_selected_genre_triggered();
+
+    void on_action_reload_list_of_genres_triggered();
 
 private:
     Ui::DialogGenre *ui;
+    QSqlTableModel *mModel;
 };
-
-#endif // DIALOGGENRE_H

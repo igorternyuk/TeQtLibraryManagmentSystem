@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DialogCountry</class>
  <widget class="QDialog" name="DialogCountry">
@@ -12,6 +13,55 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTableView" name="tableView"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="btnNewCountry">
+         <property name="text">
+          <string>New country</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRemoveCountry">
+         <property name="text">
+          <string>Remove country</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnReloadCountries">
+         <property name="text">
+          <string>Reload list</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <action name="action_insert_new_country">
+   <property name="text">
+    <string>Insert new country</string>
+   </property>
+  </action>
+  <action name="action_remove_selected_country">
+   <property name="text">
+    <string>Remove selected country</string>
+   </property>
+  </action>
+  <action name="action_reload_list_of_countries">
+   <property name="text">
+    <string>Reload list of countries</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
