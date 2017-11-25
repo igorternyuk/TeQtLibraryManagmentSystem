@@ -2,6 +2,7 @@
 #include "ui_dialogauthor.h"
 #include <QSqlTableModel>
 #include <QMessageBox>
+#include <QDebug>
 
 DialogAuthor::DialogAuthor(QWidget *parent) :
     QDialog(parent),
@@ -54,5 +55,11 @@ void DialogAuthor::on_action_remove_selected_author_triggered()
 
 void DialogAuthor::on_action_reload_list_of_authors_triggered()
 {
+    emit reloadData();
     mModel->select();
+}
+
+QSqlTableModel *DialogAuthor::model() const
+{
+    return mModel;
 }

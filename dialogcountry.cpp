@@ -54,5 +54,11 @@ void DialogCountry::on_action_remove_selected_country_triggered()
 
 void DialogCountry::on_action_reload_list_of_countries_triggered()
 {
+    emit reloadData();
     mModel->select();
+}
+
+QSqlTableModel *DialogCountry::model() const
+{
+    return mModel;
 }

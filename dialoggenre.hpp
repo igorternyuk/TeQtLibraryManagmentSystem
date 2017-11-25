@@ -16,12 +16,14 @@ class DialogGenre : public QDialog
 public:
     explicit DialogGenre(QWidget *parent = nullptr);
     ~DialogGenre();
+    QSqlTableModel *model() const;
+
+signals:
+    void reloadData();
 
 private slots:
     void on_action_insert_new_genre_triggered();
-
     void on_action_remove_selected_genre_triggered();
-
     void on_action_reload_list_of_genres_triggered();
 
 private:

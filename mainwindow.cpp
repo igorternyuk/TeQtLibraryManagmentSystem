@@ -9,6 +9,7 @@
 #include <QSqlRelation>
 #include <QDate>
 #include <QMessageBox>
+#include "comboboxsqlmodel.hpp"
 
 enum Columns
 {
@@ -65,36 +66,46 @@ MainWindow::MainWindow(QWidget *parent) :
                               });
     ui->dateEditMax->setDate(QDate::currentDate());
     ui->dateEditMIn->setDate(QDate::currentDate());
-    /*
 
-CREATE TABLE book (
-    id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    title TEXT,
-    pages INTEGER,
-    DOP DATE,
-    idGenre INTEGER,
-    idAthor INTEGER,
-    idEdition INTEGER,
-    price DOUBLE,
-    isAvailable BIT,
-    FOREIGN KEY (idGenre) REFERENCES genre(id),
-    FOREIGN KEY (idAthor) REFERENCES author(id),
-    FOREIGN KEY (idEdition) REFERENCES edition(id)
-);
-*/
-    /*QSqlTableModel *model = new QSqlTableModel;
-     model->setTable("employee");
-     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-     model->select();
-     model->removeColumn(0); // don't show the ID
-     model->setHeaderData(0, Qt::Horizontal, tr("Name"));
-     model->setHeaderData(1, Qt::Horizontal, tr("Salary"));
+    //Authors
 
-     QTableView *view = new QTableView;
-     view->setModel(model);
-     view->show();*/
+    mDialogAuthor = new DialogAuthor(this);
+    mComboModelAuthor = new ComboBoxSqlModel("name", "author", this);
+    ui->comboAuthores->setModel(mComboModelAuthor);
+    connect(mDialogAuthor, &DialogAuthor::reloadData, [this](){
+            mComboModelAuthor->reload();
+            ui->comboAuthores->setCurrentIndex(0);
+    });
 
+    //Countries
 
+    mDialogCountry = new DialogCountry(this);
+    mComboModelCountry = new ComboBoxSqlModel("name", "country", this);
+    ui->comboCountries->setModel(mComboModelCountry);
+    connect(mDialogCountry, &DialogCountry::reloadData, [this](){
+            mComboModelCountry->reload();
+            ui->comboCountries->setCurrentIndex(0);
+    });
+
+    //Genres
+
+    mDialogGenre = new DialogGenre(this);
+    mComboModelGenre = new ComboBoxSqlModel("name", "genre", this);
+    ui->comboGenres->setModel(mComboModelGenre);
+    connect(mDialogGenre, &DialogGenre::reloadData,[this](){
+            mComboModelGenre->reload();
+            ui->comboGenres->setCurrentIndex(0);
+    });
+
+    //Editions
+
+    mDialogEdition = new DialogEdition(this);
+    mComboModelEdition = new ComboBoxSqlModel("name", "edition", this);
+    ui->comboEditions->setModel(mComboModelEdition);
+    connect(mDialogEdition, &DialogEdition::reloadData,[this](){
+            mComboModelEdition->reload();
+            ui->comboEditions->setCurrentIndex(0);
+    });
 }
 
 MainWindow::~MainWindow()
@@ -114,26 +125,22 @@ void MainWindow::on_action_close_triggered()
 
 void MainWindow::on_action_edit_authors_triggered()
 {
-    DialogAuthor dialog(this);
-    dialog.exec();
+    mDialogAuthor->exec();
 }
 
 void MainWindow::on_action_manage_editions_triggered()
 {
-    DialogEdition dialog(this);
-    dialog.exec();
+    mDialogEdition->exec();
 }
 
 void MainWindow::on_action_edit_countries_triggered()
 {
-    DialogCountry dialog(this);
-    dialog.exec();
+    mDialogCountry->exec();
 }
 
 void MainWindow::on_action_edit_genres_triggered()
 {
-    DialogGenre dialog(this);
-    dialog.exec();
+    mDialogGenre->exec();
 }
 
 void MainWindow::on_action_insert_book_triggered()
@@ -159,4 +166,12 @@ void MainWindow::on_action_search_book_triggered()
     mModel->select();
 }
 
+void MainWindow::on_btnSearchBook_clicked()
+{
 
+}
+
+void MainWindow::on_btnResetForm_clicked()
+{
+
+}

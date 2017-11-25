@@ -2,6 +2,7 @@
 #include "ui_dialoggenre.h"
 #include <QSqlTableModel>
 #include <QMessageBox>
+#include <QKeyEvent>
 
 DialogGenre::DialogGenre(QWidget *parent) :
     QDialog(parent),
@@ -56,4 +57,10 @@ void DialogGenre::on_action_remove_selected_genre_triggered()
 void DialogGenre::on_action_reload_list_of_genres_triggered()
 {
     mModel->select();
+    emit reloadData();
+}
+
+QSqlTableModel *DialogGenre::model() const
+{
+    return mModel;
 }

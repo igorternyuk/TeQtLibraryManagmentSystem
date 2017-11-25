@@ -72,5 +72,11 @@ void DialogEdition::on_action_remove_selected_edition_triggered()
 
 void DialogEdition::on_action_reload_list_of_editions_triggered()
 {
+    emit reloadData();
     mModel->select();
+}
+
+QSqlRelationalTableModel *DialogEdition::model() const
+{
+    return mModel;
 }

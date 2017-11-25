@@ -15,7 +15,10 @@ class DialogCountry : public QDialog
 
 public:
     explicit DialogCountry(QWidget *parent = nullptr);
-    ~DialogCountry();
+    ~DialogCountry();    
+    QSqlTableModel *model() const;
+signals:
+    void reloadData();
 
 private slots:
     void on_action_insert_new_country_triggered();

@@ -1,11 +1,22 @@
-#ifndef COMBOBOXMODEL_H
-#define COMBOBOXMODEL_H
+#pragma once
 
+#include <QObject>
+#include <QSqlQueryModel>
 
-class ComboBoxModel
+class ComboBoxSqlModel: public QSqlQueryModel
 {
-public:
-    ComboBoxModel();
-};
+    Q_OBJECT
 
-#endif // COMBOBOXMODEL_H
+public:
+    explicit ComboBoxSqlModel(const QString &visibleColumn, const QString &tableName,
+                              QObject *parent = nullptr);
+    virtual QVariant data(const QModelIndex &index,
+                          int role = Qt::DisplayRole) const override;
+    virtual int rowCount(const QModelIndex &parent) const override;
+    void reload();
+
+private:
+    QVariant dataFromParent(QModelIndex index, int column) const;
+    QString mQuery;
+    QString mTableName;
+};

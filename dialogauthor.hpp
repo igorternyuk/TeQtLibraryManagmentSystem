@@ -16,7 +16,9 @@ class DialogAuthor : public QDialog
 public:
     explicit DialogAuthor(QWidget *parent = nullptr);
     ~DialogAuthor();
-
+    QSqlTableModel *model() const;
+signals:
+    void reloadData();
 private slots:
     void on_action_insert_new_author_triggered();
     void on_action_remove_selected_author_triggered();

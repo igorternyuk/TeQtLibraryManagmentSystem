@@ -12,10 +12,15 @@ class DialogBookSearch : public QDialog
     Q_OBJECT
 
 public:
-    explicit DialogBookSearch(QWidget *parent = nullptr);
+    explicit DialogBookSearch(const QString &sqlCmd,
+                              QWidget *parent = nullptr);
     ~DialogBookSearch();
 
 private:
     Ui::DialogBookSearch *ui;
+    QString mSqlCmd;
+private slots:
+    void sortBy(int index);
+    void toggleDescOrder(bool isDesc = false);
 };
 

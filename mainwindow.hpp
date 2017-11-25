@@ -10,6 +10,11 @@ namespace Ui
 
 class QSqlRelationalTableModel;
 class QSqlRelationalDelegate;
+class ComboBoxSqlModel;
+class DialogAuthor;
+class DialogEdition;
+class DialogCountry;
+class DialogGenre;
 
 class MainWindow : public QMainWindow
 {
@@ -30,9 +35,22 @@ private slots:
     void on_action_remove_book_triggered();
     void on_action_search_book_triggered();
 
+    void on_btnSearchBook_clicked();
+    void on_btnResetForm_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database mDB;
     QSqlRelationalTableModel *mModel;
     QSqlRelationalDelegate *mDelegate;
+    DialogAuthor *mDialogAuthor;
+    DialogEdition *mDialogEdition;
+    DialogCountry *mDialogCountry;
+    DialogGenre *mDialogGenre;
+
+    ComboBoxSqlModel *mComboModelAuthor;
+    ComboBoxSqlModel *mComboModelCountry;
+    ComboBoxSqlModel *mComboModelGenre;
+    ComboBoxSqlModel *mComboModelEdition;
+    void fillComboBoxes();
 };
