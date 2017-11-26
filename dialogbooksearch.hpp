@@ -7,6 +7,8 @@ namespace Ui
     class DialogBookSearch;
 }
 
+class QSqlQueryModel;
+
 class DialogBookSearch : public QDialog
 {
     Q_OBJECT
@@ -19,8 +21,9 @@ public:
 private:
     Ui::DialogBookSearch *ui;
     QString mSqlCmd;
+    QSqlQueryModel *mModel;
 private slots:
     void sortBy(int index);
-    void toggleDescOrder(bool isDesc = false);
+    QString getSortCommandTail(int index);
 };
 

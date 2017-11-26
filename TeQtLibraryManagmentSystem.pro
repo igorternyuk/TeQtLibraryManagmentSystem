@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     dialogedition.cpp \
     dialoggenre.cpp \
     dialogbooksearch.cpp \
-    comboboxsqlmodel.cpp
+    comboboxsqlmodel.cpp \
+    loginform.cpp \
+    program.cpp
 
 HEADERS  += \
     database.hpp \
@@ -30,11 +32,14 @@ HEADERS  += \
     dialogedition.hpp \
     dialoggenre.hpp \
     mainwindow.hpp \
-    comboboxsqlmodel.hpp
+    comboboxsqlmodel.hpp \
+    loginform.hpp \
+    program.hpp
 
 FORMS    += mainwindow.ui \
     dialogauthor.ui \
     dialogcountry.ui \
     dialogedition.ui \
     dialoggenre.ui \
-    dialogbooksearch.ui
+    dialogbooksearch.ui \
+    loginform.ui

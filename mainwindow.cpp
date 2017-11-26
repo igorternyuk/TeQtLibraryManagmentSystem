@@ -10,6 +10,10 @@
 #include <QDate>
 #include <QMessageBox>
 #include "comboboxsqlmodel.hpp"
+#include "dialogbooksearch.hpp"
+#ifdef DEBUG
+#include <QDebug>
+#endif
 
 enum Columns
 {
@@ -26,17 +30,12 @@ enum Columns
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    mDB("library", "igorternyuk", "1319", "127.0.0.1", 3306)
+    ui(new Ui::MainWindow)
+    //mDB("library", "igorternyuk", "1319", "127.0.0.1", 3306)
 {
     ui->setupUi(this);
     this->setWindowTitle("TeQtLibraryManagmentSystem");
-    QString error;
-    if(!mDB.openConnection(error))
-    {
-        QMessageBox::critical(this, "Database error", error);
-        close();
-    }
+
 
     mModel = new QSqlRelationalTableModel(this);
     mModel->setTable("book");
@@ -67,50 +66,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dateEditMax->setDate(QDate::currentDate());
     ui->dateEditMIn->setDate(QDate::currentDate());
 
-    //Authors
-
-    mDialogAuthor = new DialogAuthor(this);
-    mComboModelAuthor = new ComboBoxSqlModel("name", "author", this);
-    ui->comboAuthores->setModel(mComboModelAuthor);
-    connect(mDialogAuthor, &DialogAuthor::reloadData, [this](){
-            mComboModelAuthor->reload();
-            ui->comboAuthores->setCurrentIndex(0);
-    });
-
-    //Countries
-
-    mDialogCountry = new DialogCountry(this);
-    mComboModelCountry = new ComboBoxSqlModel("name", "country", this);
-    ui->comboCountries->setModel(mComboModelCountry);
-    connect(mDialogCountry, &DialogCountry::reloadData, [this](){
-            mComboModelCountry->reload();
-            ui->comboCountries->setCurrentIndex(0);
-    });
-
-    //Genres
-
-    mDialogGenre = new DialogGenre(this);
-    mComboModelGenre = new ComboBoxSqlModel("name", "genre", this);
-    ui->comboGenres->setModel(mComboModelGenre);
-    connect(mDialogGenre, &DialogGenre::reloadData,[this](){
-            mComboModelGenre->reload();
-            ui->comboGenres->setCurrentIndex(0);
-    });
-
-    //Editions
-
-    mDialogEdition = new DialogEdition(this);
-    mComboModelEdition = new ComboBoxSqlModel("name", "edition", this);
-    ui->comboEditions->setModel(mComboModelEdition);
-    connect(mDialogEdition, &DialogEdition::reloadData,[this](){
-            mComboModelEdition->reload();
-            ui->comboEditions->setCurrentIndex(0);
-    });
+    configureComboBoxes();
 }
 
 MainWindow::~MainWindow()
 {
-    mDB.closeConnection();
+    //mDB.closeConnection();
     delete ui;
 }
 
@@ -168,10 +129,129 @@ void MainWindow::on_action_search_book_triggered()
 
 void MainWindow::on_btnSearchBook_clicked()
 {
+    QString sql {"SELECT book.id AS ID, book.title AS Title, genre.name AS Genre," \
+                 " author.name AS Author, edition.name AS Edition, book.pages AS Pages," \
+                 " country.name AS Country, book.DOP AS DateOfPublication, book.price"
+                 " AS Price, book.available AS NumberOfExamples FROM book" \
+                 " INNER JOIN genre, author, edition, country WHERE book.idGenre = genre.id AND" \
+                 " book.idAuthor = author.id AND book.idEdition = edition.id AND"\
+                 " edition.idCountry = country.id AND book.title LIKE '%"};
+    QString regExp { ui->txtSearch->text() };
+    sql += regExp + "%' ";
 
+    if(ui->checkBoxPages->isChecked())
+    {
+        auto pagesMin = ui->spinBoxPagesMin->value();
+        auto pagesMax = ui->spinBoxPagesMax->value();
+        sql += QString(" AND book.pages > %1  AND book.pages < %2").arg(pagesMin).arg(pagesMax);
+    }
+
+    if(ui->checkBoxPrice->isChecked())
+    {
+        auto priceMin = ui->spinBoxPriceMin->value();
+        auto priceMax = ui->spinBoxPriceMax->value();
+        sql += QString(" AND book.price > %1  AND book.price < %2").arg(priceMin).arg(priceMax);
+    }
+
+    if(ui->checkBoxDate->isChecked())
+    {
+        auto dateMin = ui->dateEditMIn->date().toString(Qt::ISODate);
+        auto dateMax = ui->dateEditMax->date().toString(Qt::ISODate);
+
+        sql += QString(" AND book.DOP > '%1'  AND book.DOP < '%2'").arg(dateMin).arg(dateMax);
+    }
+
+    if(ui->comboAuthores->currentIndex() > 0)
+    {
+        bool ok { false };
+        auto id = ui->comboAuthores->itemData(ui->comboAuthores->currentIndex(),
+                                              Qt::UserRole).toInt(&ok);
+        if(ok)
+            sql += QString(" AND author.id = %1").arg(id);
+    }
+
+    if(ui->comboCountries->currentIndex() > 0)
+    {
+        bool ok { false };
+        auto id = ui->comboCountries->itemData(ui->comboCountries->currentIndex(),
+                                               Qt::UserRole).toInt(&ok);
+        if(ok)
+            sql += QString(" AND country.id = %1").arg(id);
+    }
+
+    if(ui->comboGenres->currentIndex() > 0)
+    {
+        bool ok { false };
+        auto id = ui->comboGenres->itemData(ui->comboGenres->currentIndex(),
+                                            Qt::UserRole).toInt(&ok);
+        if(ok)
+            sql += QString(" AND genre.id = %1").arg(id);
+    }
+
+    if(ui->comboEditions->currentIndex() > 0)
+    {
+        bool ok { false };
+        auto id = ui->comboEditions->itemData(ui->comboEditions->currentIndex(),
+                                              Qt::UserRole).toInt(&ok);
+        if(ok)
+            sql += QString(" AND edition.id = %1").arg(id);
+    }
+
+    if(ui->checkBoxOnlyAvailables->isChecked())
+    {
+        sql += QString(" AND book.available > 0 ");
+    }
+#ifdef DEBUG
+    qDebug() << "SQL = " << sql;
+#endif
+    DialogBookSearch dialog(sql, this);
+    dialog.exec();
 }
 
 void MainWindow::on_btnResetForm_clicked()
 {
 
+}
+
+void MainWindow::configureComboBoxes()
+{
+    //Authors
+
+    mDialogAuthor = new DialogAuthor(this);
+    mComboModelAuthor = new ComboBoxSqlModel("name", "author", this);
+    ui->comboAuthores->setModel(mComboModelAuthor);
+    connect(mDialogAuthor, &DialogAuthor::reloadData, [this](){
+            mComboModelAuthor->reload();
+            ui->comboAuthores->setCurrentIndex(0);
+    });
+
+    //Countries
+
+    mDialogCountry = new DialogCountry(this);
+    mComboModelCountry = new ComboBoxSqlModel("name", "country", this);
+    ui->comboCountries->setModel(mComboModelCountry);
+    connect(mDialogCountry, &DialogCountry::reloadData, [this](){
+            mComboModelCountry->reload();
+            ui->comboCountries->setCurrentIndex(0);
+    });
+
+    //Genres
+
+    mDialogGenre = new DialogGenre(this);
+    mComboModelGenre = new ComboBoxSqlModel("name", "genre", this);
+    ui->comboGenres->setModel(mComboModelGenre);
+    connect(mDialogGenre, &DialogGenre::reloadData,[this](){
+            mComboModelGenre->reload();
+            ui->comboGenres->setCurrentIndex(0);
+    });
+
+    //Editions
+
+    mDialogEdition = new DialogEdition(this);
+    mComboModelEdition = new ComboBoxSqlModel("name", "edition", this);
+    ui->comboEditions->setModel(mComboModelEdition);
+    connect(mDialogEdition, &DialogEdition::reloadData,[this](){
+            mComboModelEdition->reload();
+            ui->comboEditions->setCurrentIndex(0);
+    });
 }

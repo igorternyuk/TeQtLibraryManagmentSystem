@@ -20,18 +20,6 @@ QVariant ComboBoxSqlModel::data(const QModelIndex &index, int role) const
 {
     QVariant result;
 
-    /*switch(role)
-    {
-        case Qt::UserRole:
-            result = dataFromParent(index, ID);
-            break;
-        case Qt::DisplayRole:
-            result = dataFromParent(index, DATA);
-            break;
-        default:
-            break;
-    }*/
-
     if(index.row() == 0)
     {
         switch(role)

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
-#include "database.hpp"
+//#include "database.hpp"
 
 namespace Ui 
 {
@@ -40,7 +40,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Database mDB;
+    //Database mDB;
     QSqlRelationalTableModel *mModel;
     QSqlRelationalDelegate *mDelegate;
     DialogAuthor *mDialogAuthor;
@@ -52,5 +52,5 @@ private:
     ComboBoxSqlModel *mComboModelCountry;
     ComboBoxSqlModel *mComboModelGenre;
     ComboBoxSqlModel *mComboModelEdition;
-    void fillComboBoxes();
+    void configureComboBoxes();
 };

@@ -45,13 +45,13 @@
          <widget class="QGroupBox" name="groupBox">
           <property name="minimumSize">
            <size>
-            <width>570</width>
+            <width>500</width>
             <height>261</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>570</width>
+            <width>500</width>
             <height>261</height>
            </size>
           </property>
@@ -78,26 +78,12 @@
              <item row="0" column="1">
               <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item>
-                <widget class="QCheckBox" name="checkBoxAuthor">
-                 <property name="text">
-                  <string>Athor</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QComboBox" name="comboAuthores"/>
                </item>
               </layout>
              </item>
              <item row="1" column="1" rowspan="2">
               <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <widget class="QCheckBox" name="checkBoxGenre">
-                 <property name="text">
-                  <string>Genre</string>
-                 </property>
-                </widget>
-               </item>
                <item>
                 <widget class="QComboBox" name="comboGenres"/>
                </item>
@@ -145,13 +131,6 @@
              <item row="3" column="1">
               <layout class="QHBoxLayout" name="horizontalLayout_6">
                <item>
-                <widget class="QCheckBox" name="checkBoxCountry">
-                 <property name="text">
-                  <string>Country</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QComboBox" name="comboCountries"/>
                </item>
               </layout>
@@ -165,13 +144,6 @@
              </item>
              <item row="4" column="1">
               <layout class="QHBoxLayout" name="horizontalLayout_7">
-               <item>
-                <widget class="QCheckBox" name="checkBoxEdition">
-                 <property name="text">
-                  <string>Edition</string>
-                 </property>
-                </widget>
-               </item>
                <item>
                 <widget class="QComboBox" name="comboEditions"/>
                </item>
