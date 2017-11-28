@@ -38,6 +38,8 @@ private slots:
     void on_btnSearchBook_clicked();
     void on_btnResetForm_clicked();
 
+    void on_btnReload_clicked();
+
 private:
     Ui::MainWindow *ui;
     //Database mDB;

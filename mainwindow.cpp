@@ -210,7 +210,21 @@ void MainWindow::on_btnSearchBook_clicked()
 
 void MainWindow::on_btnResetForm_clicked()
 {
-
+    ui->txtSearch->setText("");
+    ui->spinBoxPagesMin->setValue(0);
+    ui->spinBoxPriceMax->setValue(0);
+    ui->spinBoxPagesMax->setValue(0);
+    ui->spinBoxPriceMin->setValue(0);
+    ui->comboAuthores->setCurrentIndex(0);
+    ui->comboCountries->setCurrentIndex(0);
+    ui->comboEditions->setCurrentIndex(0);
+    ui->comboGenres->setCurrentIndex(0);
+    ui->checkBoxDate->setChecked(false);
+    ui->checkBoxOnlyAvailables->setChecked(false);
+    ui->checkBoxPages->setChecked(false);
+    ui->checkBoxPrice->setChecked(false);
+    ui->dateEditMax->setDate(QDate::currentDate());
+    ui->dateEditMIn->setDate(QDate::currentDate());
 }
 
 void MainWindow::configureComboBoxes()
@@ -223,6 +237,7 @@ void MainWindow::configureComboBoxes()
     connect(mDialogAuthor, &DialogAuthor::reloadData, [this](){
             mComboModelAuthor->reload();
             ui->comboAuthores->setCurrentIndex(0);
+            mModel->relationModel(AUTHOR)->select();
     });
 
     //Countries
@@ -233,6 +248,7 @@ void MainWindow::configureComboBoxes()
     connect(mDialogCountry, &DialogCountry::reloadData, [this](){
             mComboModelCountry->reload();
             ui->comboCountries->setCurrentIndex(0);
+            mDialogEdition->onCountryListUpdated();
     });
 
     //Genres
@@ -243,6 +259,7 @@ void MainWindow::configureComboBoxes()
     connect(mDialogGenre, &DialogGenre::reloadData,[this](){
             mComboModelGenre->reload();
             ui->comboGenres->setCurrentIndex(0);
+            mModel->relationModel(GENRE)->select();
     });
 
     //Editions
@@ -253,5 +270,11 @@ void MainWindow::configureComboBoxes()
     connect(mDialogEdition, &DialogEdition::reloadData,[this](){
             mComboModelEdition->reload();
             ui->comboEditions->setCurrentIndex(0);
+            mModel->relationModel(EDITION)->select();
     });
+}
+
+void MainWindow::on_btnReload_clicked()
+{
+    mModel->select();
 }

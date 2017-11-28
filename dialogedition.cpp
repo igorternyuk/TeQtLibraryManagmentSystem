@@ -80,3 +80,8 @@ QSqlRelationalTableModel *DialogEdition::model() const
 {
     return mModel;
 }
+
+void DialogEdition::onCountryListUpdated()
+{
+    mModel->relationModel(COUNTRY)->select();
+}
